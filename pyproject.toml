@@ -1,0 +1,24 @@
+[project]
+name = "bitcoin-price"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "SANIC6", email = "somayajivar@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "logging>=0.4.9.6",
+    "pandas>=3.0.6",
+    "requests>=2.34.2",
+    "seaborn>=0.13.2",
+    "torch>=2.14.1",
+    "torchmetrics>=1.9.0",
+]
+
+[project.scripts]
+bitcoin-price = "bitcoin_price:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
