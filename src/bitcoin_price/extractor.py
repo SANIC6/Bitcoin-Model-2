@@ -6,7 +6,7 @@ import torch
 from torch.utils.data import DataLoader, TensorDataset
 from coingecko_sdk import Coingecko
 from datetime import datetime, timedelta, timezone
-
+from scipy import stats
 
 from dotenv import load_dotenv
 import os
@@ -56,11 +56,23 @@ class DataExtractor:
         df["timestamp"] = pd.to_datetime(df["timestamp"], unit="ms")
         df = df.set_index("timestamp")
         return df
+    
     def _preprocess_data(self, df):
+        """
+        Preprocess the data by adding log price, price difference, price change, and volatility.
+        
+        Args:
+            df (pd.DataFrame): The input DataFrame containing price data.
+            
+        Returns:
+            pd.DataFrame: The DataFrame with added features.
+        """
+        
         df["log_price"] = np.log(df["price"])
         df['price_diff'] = df['price'].diff()
         df["price_change"] = df["price"].pct_change()
         df["volatility"] = df["price_change"].rolling(window=30).std()
+    
         return df
     def _clean_data(self, df):
         pass
