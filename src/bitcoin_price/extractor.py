@@ -83,7 +83,7 @@ class DataExtractor:
     
         return df
 
-    
-    def _get_loaders(self,df):
-        pass
 
+class TimeSeriesDataset:
+    def __init__(self):
+        pass
